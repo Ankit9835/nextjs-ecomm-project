@@ -4,7 +4,7 @@ import ProductsList from './ProductsList';
 import { LuLayoutGrid, LuList } from 'react-icons/lu';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Separator } from '../ui/separator';
+//import { Separator } from '../ui/separator';
 import { fetchAllProducts } from '@/src/utils/action';
 
 const ProductsContainer = async ({layout,search}:{layout:string,search:string}) => {

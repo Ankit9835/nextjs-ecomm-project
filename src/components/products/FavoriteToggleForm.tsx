@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FavoriteToggleForm = () => {
+const FavoriteToggleForm = ({productId}:{productId:string}) => {
   return (
     <div>
       Favorite Toggle Form
