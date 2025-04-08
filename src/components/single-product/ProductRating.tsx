@@ -16,4 +16,3 @@ const ProductRating = ({productId}:{productId:string}) => {
 }
 
 export default ProductRating
-{productId}:{productId:string}
