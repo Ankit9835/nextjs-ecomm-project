@@ -4,6 +4,7 @@ import "./globals.css";
 import Container from "../components/global/Container";
 import Providers from "./Providers";
 import Navbar from "../components/navbar/Navbar";
+import { ClerkProvider } from '@clerk/nextjs';
 
 
 
@@ -30,6 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body>
       <Providers>
@@ -38,5 +40,6 @@ export default function RootLayout({
       </Providers>
     </body>
     </html>
+    </ClerkProvider>
   );
 }
