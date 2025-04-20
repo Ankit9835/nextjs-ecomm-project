@@ -4,15 +4,20 @@ import { formatCurrency } from '@/src/utils/format';
 import FavoriteToggleButton from '@/src/components/products/FavoriteToggleButton';
 import AddToCart from '@/src/components/single-product/AddToCart';
 import ProductRating from '@/src/components/single-product/ProductRating';
-import { fetchSingleProduct } from '@/src/utils/action';
+import { fetchSingleProduct, findExistingReview } from '@/src/utils/action';
 import BreadCrumbs from '@/src/components/single-product/BreadCrumbs';
 import ShareButton from '@/src/components/single-product/ShareButton';
 import ProductReviews from '@/src/components/reviews/ProductReviews';
 import SubmitReview from '@/src/components/reviews/SubmitReview';
+import { auth } from '@clerk/nextjs/server';
 
 const SingleProduct = async ({params}:{params:{id:string}}) => {
+    const { userId } = auth();
+  
     const singleProduct = await fetchSingleProduct(params.id)
     const {image,name,price,description,company} = singleProduct
+    const reviewDoesNotExist =
+    userId && !(await findExistingReview(userId, params.id));
     const dollarAmounts = formatCurrency(price)
   return (
     <section>
@@ -48,7 +53,8 @@ const SingleProduct = async ({params}:{params:{id:string}}) => {
         </div>
         </div>
         <ProductReviews productId={params.id} />
-        <SubmitReview productId={params.id} />
+        {reviewDoesNotExist && <SubmitReview productId={params.id} />}
+        
     </section>
   )
 }
