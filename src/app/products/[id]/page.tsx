@@ -6,6 +6,9 @@ import AddToCart from '@/src/components/single-product/AddToCart';
 import ProductRating from '@/src/components/single-product/ProductRating';
 import { fetchSingleProduct } from '@/src/utils/action';
 import BreadCrumbs from '@/src/components/single-product/BreadCrumbs';
+import ShareButton from '@/src/components/single-product/ShareButton';
+import ProductReviews from '@/src/components/reviews/ProductReviews';
+import SubmitReview from '@/src/components/reviews/SubmitReview';
 
 const SingleProduct = async ({params}:{params:{id:string}}) => {
     const singleProduct = await fetchSingleProduct(params.id)
@@ -29,7 +32,11 @@ const SingleProduct = async ({params}:{params:{id:string}}) => {
         <div>
             <div className='flex gap-x-8 items-center'>
                 <h1 className='capitalize text-3xl font-bold'>{name}</h1>
-                <FavoriteToggleButton productId={params.id} />
+                <div className='flex items-center gap-x-2'>
+                  <FavoriteToggleButton productId={params.id} />
+                  <ShareButton name={name} productId={params.id} />
+                </div>
+                
             </div>
             <ProductRating productId={params.id} />
             <h4 className='text-xl mt-2'>{company}</h4>
@@ -40,6 +47,8 @@ const SingleProduct = async ({params}:{params:{id:string}}) => {
           <AddToCart productId={params.id} />
         </div>
         </div>
+        <ProductReviews productId={params.id} />
+        <SubmitReview productId={params.id} />
     </section>
   )
 }
