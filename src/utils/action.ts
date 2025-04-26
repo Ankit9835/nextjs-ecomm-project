@@ -404,7 +404,7 @@ const fetchProduct = async (productId: string) => {
 export const fetchOrCreateCart = async ({userId,errorOnFailure=false}:{userId:string,errorOnFailure?:boolean}) => {
   let cart = await db.cart.findFirst({
     where:{
-      id:userId
+      clerkId:userId
     },
     include:{
       cartItems:{
@@ -414,6 +414,7 @@ export const fetchOrCreateCart = async ({userId,errorOnFailure=false}:{userId:st
       }
     }
   })
+  console.log('cartssssss',cart)
   if(!cart && errorOnFailure){
     throw new Error('cart not found')
   } 
@@ -512,3 +513,7 @@ export const addToCartAction = async (prevState:any, formData:FormData) => {
 export const removeCartItemAction = async () => {};
 
 export const updateCartItemAction = async () => {};
+
+export const createOrderAction = async (prevState:any, formData:FormData) => {
+  return {message: 'cart added successfully'}
+}
