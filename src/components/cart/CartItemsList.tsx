@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import ThirdColumn from './ThirdColumn';
 import { CartItemWithProduct } from '@/src/utils/types';
-import { FirstColumn, FourthColumn, SecondColumn } from './CartitemColumns';
+import { FirstColumn, FourthColumn, SecondColumn } from './CartItemColumns';
 
 function CartItemsList({ cartItems }: { cartItems: CartItemWithProduct[] }) {
   return (
@@ -16,7 +16,7 @@ function CartItemsList({ cartItems }: { cartItems: CartItemWithProduct[] }) {
           >
             <FirstColumn image={image} name={name} />
             <SecondColumn name={name} company={company} productId={productId} />
-            {/* <ThirdColumn id={id} quantity={amount} /> */}
+            <ThirdColumn id={id} quantity={amount} />
             <FourthColumn price={price} />
           </Card>
         );
